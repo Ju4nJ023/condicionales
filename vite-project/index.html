@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Juego de las 7 y media</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="contenedor-principal">
+    <h1>Game Of Cards</h1>
+    <div id="opciones">
+      <button id="iniciar">Iniciar Juego</button>
+      <button id="plantarse" style="display: none;">Plantarse</button>
+      <button id="mostrarCartasBtn" style="display: none;">Mostrar/Ocultar Cartas</button>
+    </div>
+    <div id="mesa"></div>
+    <div id="pedirCartaContainer">
+      <button id="pedir" style="display: none;"></button>
+    </div>
+    <div id="mensaje"></div>
+    <div id="log"></div>
+  </div>
+
+  <script type="module" src="/src/juego.ts"></script>
   </body>
 </html>
