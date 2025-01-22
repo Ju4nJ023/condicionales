@@ -124,7 +124,23 @@ function pedirCarta(): void {
 }
 
 function plantarse(): void {
-  mensajeEl.textContent = `Te plantaste con ${puntos} puntos.`;
+  let mensajeFinal = "";
+  const puntosRedondeados = Math.floor(puntos); 
+
+  if (puntosRedondeados < 4) {
+    mensajeFinal = "Has sido muy conservador.";
+  } else if (puntosRedondeados === 5) {
+    mensajeFinal = "Te ha entrado el canguelo eh?";
+  } else if (puntosRedondeados === 6 || puntosRedondeados === 7) {
+    mensajeFinal = "Casi casi...";
+  } else if (puntos === 7.5) {
+    mensajeFinal = "¡Lo has clavado! ¡Enhorabuena!";
+  } else {
+    mensajeFinal = "Puntuación inesperada.";
+  }
+  mensajeEl.textContent = `${mensajeFinal} Te plantaste con ${puntos} puntos.`;
+  
+ 
   terminarJuego();
 }
 
