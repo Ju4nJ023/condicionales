@@ -9,20 +9,27 @@
   </head>
   <body>
     <div id="contenedor-principal">
-    <h1>Game Of Cards</h1>
-    <div id="opciones">
-      <button id="iniciar">Iniciar Juego</button>
-      <button id="plantarse" style="display: none;">Plantarse</button>
-      <button id="mostrarCartasBtn" style="display: none;">Mostrar/Ocultar Cartas</button>
-    </div>
-    <div id="mesa"></div>
-    <div id="pedirCartaContainer">
-      <button id="pedir" style="display: none;"></button>
-    </div>
-    <div id="mensaje"></div>
-    <div id="log"></div>
-  </div>
+      <h1>Game Of Cards</h1>
 
-  <script type="module" src="/src/juego.ts"></script>
+      <!-- Contenedor de opciones y botones -->
+      <div id="opciones">
+        <button id="empezarPartida" class="boton">Empezar Partida</button>
+        <button id="pedirCarta" class="boton">Pedir Carta</button>
+        <button id="mostrarCarta" class="boton">Mostrar Carta</button>
+        <button id="plantarse" class="boton">Plantarse</button>
+        <button id="mostrarQuehubieraPasadoBtn" class="boton" style="display: none;">
+          Qué hubiera pasado
+        </button>
+      </div>
+
+      <!-- Contenedor de mensajes y resultados -->
+      <p id="resultado">Aquí saldrá el resultado</p>
+      <div id="mensaje"></div>
+
+      <!-- Contenedor para mostrar las cartas -->
+      <div id="cartasContainer"></div>
+    </div>
+
+    <script type="module" src="/src/juego.ts"></script>
   </body>
 </html>

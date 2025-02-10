@@ -1,182 +1,165 @@
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --color-naranja: #FFA726;
+  --color-naranja-oscuro: #FFA000;
+  --color-verde: #1B5E20;
+  --color-blanco: #FFFFFF;
+  --color-sombra: rgba(0, 0, 0, 0.2);
+  --color-sombra-intensa: rgba(0, 0, 0, 0.5);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --fuente-principal: 'Arial', sans-serif;
+  --borde-radio: 10px;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-#contenedor-principal {
-  display: flex; /* Activar Flexbox */
-  flex-direction: column; /* Alinear los elementos en columna */
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center; /* Centrar horizontalmente */
-  text-align: center; /* Asegurar que el texto esté centrado */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
-  width: 100%; /* Ocupa todo el ancho disponible */
-  background-color: #333; /* Color de fondo oscuro */
-  color: white; /* Texto en blanco */
-  margin: 0; /* Eliminar márgenes del body */
+  --ancho-max: 800px;
+  --ancho-carta: 120px;
+  --alto-carta: 180px;
 }
 
+/* Estilo general del body */
 body {
   margin: 0;
+  padding: 0;
+  font-family: var(--fuente-principal);
+  background-color: #F5F5F5; /* Fondo claro para contraste */
+  color: #333; /* Texto oscuro para legibilidad */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #242424;
-  font-family: 'Inter', sans-serif;
-  color: rgba(255, 255, 255, 0.87);
+  justify-content: flex-start;
+  min-height: 100vh; /* Asegura que ocupe toda la pantalla */
 }
 
-#app {
-  max-width: 960px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 1rem;
-  text-align: center;
-  background-color: #ffffff;
-  color: #213547;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  font-size: 2.5em;
-  line-height: 1.2;
-  color: #ffffff;
-  margin-bottom: 60px;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-}
-
-#botones {
-  display: flex; /* Habilita el diseño flexbox */
-  flex-direction: column; /* Coloca los botones en columna */
-  gap: 20px; /* Espaciado entre los botones */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  max-width: 300px; /* Define un ancho máximo para el contenedor de botones */
-  margin: 0 auto; /* Centra horizontalmente el contenedor de botones */
-  padding: 20px 0; /* Espaciado interno opcional */
-}
-
+/* Botones */
 button {
-  display: block;
-  width: 100%;
-  max-width: 200px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.8em 1.5em;
-  font-size: 1em;
-  font-weight: 500;
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--color-naranja);
+  color: var(--color-blanco);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s;
+  box-shadow: 0 3px 6px var(--color-sombra);
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: var(--color-naranja-oscuro);
   transform: scale(1.05);
 }
 
-button:disabled {
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-}
-
-#iniciar {
-  display: block;
-  position: relative; 
-  margin: 20px auto; 
-  top: 0; 
-  transform: none; 
+/* Encabezado */
+h1 {
+  margin: 20px 0;
+  font-size: 2.5rem;
+  color: var(--color-verde);
   text-align: center;
+  text-shadow: 1px 1px 3px var(--color-sombra-intensa);
 }
 
+/* Mesa del juego */
 #mesa {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  width: 80%;
+  max-width: var(--ancho-max);
+  padding: 20px;
+  background: var(--color-verde);
+  border-radius: var(--borde-radio);
+  box-shadow: 0 4px 10px var(--color-sombra-intensa);
 }
 
-.carta-contenedor {
+/* Imagen de las cartas */
+#imagenCarta {
+  width: var(--ancho-carta);
+  height: var(--alto-carta);
+  margin: 10px;
+  border-radius: var(--borde-radio);
+  box-shadow: 0 4px 6px var(--color-sombra);
+  border: 2px solid var(--color-blanco);
+}
+
+/* Resultados y texto */
+#resultado {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-verde);
   text-align: center;
 }
 
+#controles {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Contenedor de cartas */
+#cartasContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--color-verde);
+  border-radius: var(--borde-radio);
+  box-shadow: 0 4px 8px var(--color-sombra-intensa);
+  width: 80%;
+  max-width: var(--ancho-max);
+  text-align: center;
+}
+
+/* Cartas individuales */
 .carta {
-  width: 120px;
+  background-color: var(--color-blanco);
+  border: 2px solid #DDD;
+  border-radius: var(--borde-radio);
+  padding: 10px;
+  box-shadow: 0 3px 6px var(--color-sombra);
+  transition: transform 0.2s;
+  text-align: center;
+}
+
+.carta:hover {
+  transform: scale(1.05);
+}
+
+.carta img {
+  width: 100%;
   height: auto;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.carta-valor {
-  font-size: 14px;
-  margin-top: 5px;
-  color: #555555;
+.carta p {
+  margin: 10px 0 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
-#pedirCartaContainer {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+/* Visibilidad de botones */
+#pedirCarta,
+#plantarse,
+#mostrarCarta {
+  display: none;
 }
 
-#pedir {
-  background-image: url('./assets/back.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100px;
-  height: 150px;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+#pedirCarta.visible,
+#plantarse.visible,
+#mostrarCarta.visible {
+  display: inline-block;
 }
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2em;
-  }
-
-  button {
-    font-size: 0.9em;
-  }
-
-  .carta {
-    width: 100px;
-  }
-
-  #app {
-    width: 100%;
-    margin: 0;
-    padding: 1rem;
-  }
-
-  #log {
-    text-align: left; /* Alinear texto a la izquierda */
-    margin: 20px auto; /* Centrar horizontalmente el contenedor */
-    width: 80%; /* Ancho del contenedor */
-    max-width: 600px; /* Ancho máximo para no ocupar toda la pantalla */
-    padding: 10px; /* Espaciado interno */
-    color: white; /* Asegúrate de que el texto sea visible */
-    background-color: #444; /* Fondo opcional para destacar */
-    border-radius: 5px; /* Bordes redondeados */
-    overflow-y: auto; /* Habilitar scroll si hay mucho texto */
-    max-height: 300px; /* Altura máxima con scroll */
+#empezarPartida {
+  display: inline-block;
 }
+
+#empezarPartida.hidden {
+  display: none;
+}
+
+#mostrarQuehubieraPasadoBtn {
+  display: none;
 }
