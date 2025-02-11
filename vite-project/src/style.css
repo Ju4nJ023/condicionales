@@ -138,28 +138,3 @@ h1 {
   font-weight: bold;
   color: #333;
 }
-
-/* Visibilidad de botones */
-#pedirCarta,
-#plantarse,
-#mostrarCarta {
-  display: none;
-}
-
-#pedirCarta.visible,
-#plantarse.visible,
-#mostrarCarta.visible {
-  display: inline-block;
-}
-
-#empezarPartida {
-  display: inline-block;
-}
-
-#empezarPartida.hidden {
-  display: none;
-}
-
-#mostrarQuehubieraPasadoBtn {
-  display: none;
-}
