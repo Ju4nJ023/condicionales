@@ -2,6 +2,8 @@ import { obtenerPuntosTotales} from './modeloo';
 
 
 
+
+
 export const generarNumeroAleatorio = (): number => {
     return Math.floor(Math.random() * 10) +1;  
 };
@@ -20,7 +22,9 @@ export const sumarPuntos =(puntosCarta: number):number => {
 
 export const gestionarPartida = (): string | null =>{
     const puntos =  obtenerPuntosTotales();
-    if (puntos > 7.5) return 'Has perdido';
+    if (puntos > 7.5) {
+        
+    } return 'Has perdido';
     if (puntos === 7.5) return 'Has ganado';
     return null;
 };

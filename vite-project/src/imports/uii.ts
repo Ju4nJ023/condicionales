@@ -3,12 +3,22 @@ import {
     obtenerPuntosTotales
 } from './modeloo';
 
+import { 
+    gestionarPartida,
+    mensajeQueHubieraPasado,
+    obtenerMensajeCuandoMePlanto,
+    sumarPuntos,
+    obtenerPuntosCarta,
+    generarcarta,
+    generarNumeroAleatorio
+ } from './motorr';
 
 
 
 
 
-export const obtenerUrlCarta = (carta: number): string => {
+
+ const obtenerUrlCarta = (carta: number): string => {
     switch (carta) {
         case 1:
           return 'src/assets/1_as-copas.jpg';
@@ -35,26 +45,109 @@ export const obtenerUrlCarta = (carta: number): string => {
       }
     };
 
-    export const mostrarUrlCarta = (urlCarta: string): void => {
+     const mostrarUrlCarta = (urlCarta: string): void => {
         const elementoImagen = document.getElementById('base');
         if (elementoImagen && elementoImagen instanceof HTMLImageElement) {
             elementoImagen.src = urlCarta;
         }
     };
 
-    export const mostrarPuntuacion = () => {
+    const mostrarPuntuacion = () => {
         const elementoParrafo = document.getElementById('resultado');
         if (elementoParrafo !== null && elementoParrafo !== undefined && elementoParrafo instanceof HTMLParagraphElement) {
             elementoParrafo.textContent = `Puntos: ${obtenerPuntosTotales()}`;
         }
     };
 
-    export const mostrarMensaje = (mensaje: string) => {
+ const mostrarMensaje = (mensaje: string) => {
         const elementoParrafo = document.getElementById('mensaje');
         if (elementoParrafo !== null && elementoParrafo !== undefined && elementoParrafo instanceof HTMLParagraphElement) {
             elementoParrafo.textContent = mensaje;
         }
     };
+
+    
+     const llamarCarta = ()  => {
+        const numeroAleatorio = generarNumeroAleatorio();
+        const carta = generarcarta(numeroAleatorio);
+        const urlCarta = obtenerUrlCarta(carta);
+        mostrarUrlCarta(urlCarta);
+        const puntos = obtenerPuntosCarta(carta);
+        const puntosAcumulados = sumarPuntos(puntos);
+        actualizarPuntosTotales(puntosAcumulados);
+        mostrarPuntuacion();
+        gestionarPartida();
+        
+    }
+const llamarNuevoJuego = () => {
+      actualizarPuntosTotales(0);
+      mostrarPuntuacion();
+      mostrarMensaje('');
+      mostrarUrlCarta('src/assets/back.jpg');
+      desactivarBtnCarta(false);
+      desactivarBtnPlantarse(false);
+    
+    }
+const llamarPlantarse = () => {
+        const mensaje = obtenerMensajeCuandoMePlanto();
+        mostrarMensaje(mensaje);
+        desactivarBtnCarta(true);
+        desactivarBtnPlantarse(true);
+      } 
+
+const llamarQueHubieraPasado = () => {
+        const numeroAleatorio = generarNumeroAleatorio();
+        const carta = generarcarta(numeroAleatorio);
+        const urlCarta = obtenerUrlCarta(carta);
+        mostrarUrlCarta(urlCarta);
+        const puntos = obtenerPuntosCarta(carta);
+        const puntosAcumulados = sumarPuntos(puntos);
+        actualizarPuntosTotales(puntosAcumulados);
+        const mensaje = mensajeQueHubieraPasado();
+        mostrarMensaje(mensaje);
+      }
+      
+
+
+
+
+
+    const desactivarBtnCarta =(estaActivo: boolean) => {
+        const btnPedirCarta = document.getElementById('pedirCarta');
+        if (btnPedirCarta !== null && btnPedirCarta !== undefined && btnPedirCarta instanceof HTMLButtonElement){
+          btnPedirCarta.disabled = estaActivo;
+        }
+      }
+      
+    const desactivarBtnPlantarse =(estaActivo: boolean) => {
+        const btnPlantarse = document.getElementById('plantarse');
+        if (btnPlantarse !== null && btnPlantarse !== undefined && btnPlantarse instanceof HTMLButtonElement){
+          btnPlantarse.disabled = estaActivo;  
+        }
+      }
+
+export const cargarPartida = () => {
+
+const btnPedirCarta = document.getElementById('pedirCarta');
+if (btnPedirCarta !== null && btnPedirCarta !==undefined && btnPedirCarta instanceof HTMLButtonElement){
+        btnPedirCarta.addEventListener ('click', llamarCarta) ;
+    } 
+const btnEmpezarPartida = document.getElementById('empezarPartida');
+if (btnEmpezarPartida !== null && btnEmpezarPartida !== undefined && btnEmpezarPartida instanceof HTMLButtonElement){
+  btnEmpezarPartida.addEventListener ('click', llamarNuevoJuego );
+}
+const btnPlantarse = document.getElementById('plantarse');
+if (btnPlantarse !== null && btnPlantarse !== undefined && btnPlantarse instanceof HTMLButtonElement){
+  btnPlantarse.addEventListener ('click', llamarPlantarse);
+}
+const btnQueHubieraPasado = document.getElementById('mostrarQuehubieraPasado');
+if (btnQueHubieraPasado !== null && btnQueHubieraPasado !== undefined && btnQueHubieraPasado instanceof HTMLButtonElement){
+  btnQueHubieraPasado.addEventListener ('click', llamarQueHubieraPasado)
+}
+}
+
+
+
 
  
 
