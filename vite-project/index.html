@@ -1,36 +1,41 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juego de las 7 y media</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <div id="contenedor-principal">
-      <h1>Game Of Cards</h1>
-      <img  id="base" src="src/assets/back.jpg" alt="">
+<!DOCTYPE html>
 
-      <!-- Contenedor de opciones y botones -->
-      <div id="opciones">
-        <button id="empezarPartida" class="boton">Empezar Partida</button>
-        <button id="pedirCarta" class="boton">Pedir Carta</button>
-        <button id="mostrarCarta" class="boton">Mostrar Carta</button>
-        <button id="plantarse" class="boton">Plantarse</button>
-        <button id="mostrarQuehubieraPasado" class="boton" >
-          Qué hubiera pasado
-        </button>
-      </div>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <title>vite app</title>
+    </head>
+    <body>
 
-      <!-- Contenedor de mensajes y resultados -->
-      <p id="resultado">Aquí saldrá el resultado</p>
-      <div id="mensaje"></div>
-
-      <!-- Contenedor para mostrar las cartas -->
-      <div id="cartasContainer"></div>
-    </div>
-
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+            <div id="contenedor-principal">
+              <h1>Game Of Cards</h1>
+              <img  id="base" src="src/assets/back.jpg" alt="">
+        
+              <!-- Contenedor de opciones y botones -->
+              <div id="opciones">
+                <button id="empezarPartida" class="boton">Empezar Partida</button>
+                <button id="pedirCarta" class="boton">Pedir Carta</button>
+                <button id="mostrarCarta" class="boton">Mostrar Carta</button>
+                <button id="plantarse" class="boton">Plantarse</button>
+                <button id="mostrarQuehubieraPasado" class="boton" >
+                  Qué hubiera pasado
+                </button>
+              </div>
+        
+              <!-- Contenedor de mensajes y resultados -->
+              <p id="resultado">Aquí saldrá el resultado</p>
+              <div id="mensaje"></div>
+        
+              <!-- Contenedor para mostrar las cartas -->
+              <div id="cartasContainer"></div>
+            </div>
+        
+        
+        <script type="module" src="/src/imports/main.ts"></script>
+    </body>
 </html>
