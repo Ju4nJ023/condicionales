@@ -5,7 +5,9 @@ import { cargarPartida} from './uii';
 
 
 
-document.addEventListener('DOMContentLoaded', cargarPartida);
+document.addEventListener('DOMContentLoaded',() => {
+    cargarPartida();
+    });
 
 
 

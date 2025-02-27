@@ -1,20 +1,41 @@
 import {
     actualizarPuntosTotales,
-    obtenerPuntosTotales
+    partida, 
+    
+
 } from './modeloo';
 
 import { 
-    gestionarPartida,
-    mensajeQueHubieraPasado,
+
+    
     obtenerMensajeCuandoMePlanto,
-    sumarPuntos,
+    sumarPuntos, 
     obtenerPuntosCarta,
     generarcarta,
-    generarNumeroAleatorio
+    generarNumeroAleatorio,
+    obtenerEstadoPartida
+    
  } from './motorr';
 
 
 
+ export const gestionarPartida = (): void =>{
+  const estado = obtenerEstadoPartida();
+
+  console.log("Estado de la partida: ", obtenerEstadoPartida());
+
+
+   if  (estado === 'Has ganado' ){
+    mostrarMensaje(`Has ganado  con ${partida.puntosTotales} puntos`);
+    desactivarBtnCarta(true);
+    desactivarBtnPlantarse(true);
+   }
+   if (estado === 'Has perdido' ){
+    mostrarMensaje(`Has perdido con ${partida.puntosTotales} puntos`);
+    desactivarBtnCarta(true);
+    desactivarBtnPlantarse(true);
+   }
+};
 
 
 
@@ -55,14 +76,25 @@ import {
     const mostrarPuntuacion = () => {
         const elementoParrafo = document.getElementById('resultado');
         if (elementoParrafo !== null && elementoParrafo !== undefined && elementoParrafo instanceof HTMLParagraphElement) {
-            elementoParrafo.textContent = `Puntos: ${obtenerPuntosTotales()}`;
+            elementoParrafo.textContent = `Puntos: ${partida.puntosTotales}`;
+            mostrarMensaje(`Estos son tus puntos : ${partida.puntosTotales}`);
         }
     };
+
+
+    const mostrarMensajeQueHubieraPasado = (mensaje: string) => {
+      const elementoParrafo = document.getElementById('resultadoHubieraPasado');
+      if (elementoParrafo instanceof HTMLParagraphElement) {
+          elementoParrafo.textContent = mensaje;
+      }
+  };
 
  const mostrarMensaje = (mensaje: string) => {
         const elementoParrafo = document.getElementById('mensaje');
         if (elementoParrafo !== null && elementoParrafo !== undefined && elementoParrafo instanceof HTMLParagraphElement) {
             elementoParrafo.textContent = mensaje;
+        } else {
+            console.error("No se ha encontrado el elemento párrafo con id= 'mensaje'.verifica que el id sea correcto");
         }
     };
 
@@ -73,16 +105,16 @@ import {
         const urlCarta = obtenerUrlCarta(carta);
         mostrarUrlCarta(urlCarta);
         const puntos = obtenerPuntosCarta(carta);
-        const puntosAcumulados = sumarPuntos(puntos);
-        actualizarPuntosTotales(puntosAcumulados);
+        actualizarPuntosTotales(sumarPuntos(puntos));
         mostrarPuntuacion();
         gestionarPartida();
         
-    }
+    };
 const llamarNuevoJuego = () => {
       actualizarPuntosTotales(0);
       mostrarPuntuacion();
       mostrarMensaje('');
+      mostrarMensajeQueHubieraPasado('');
       mostrarUrlCarta('src/assets/back.jpg');
       desactivarBtnCarta(false);
       desactivarBtnPlantarse(false);
@@ -101,15 +133,10 @@ const llamarQueHubieraPasado = () => {
         const urlCarta = obtenerUrlCarta(carta);
         mostrarUrlCarta(urlCarta);
         const puntos = obtenerPuntosCarta(carta);
-        const puntosAcumulados = sumarPuntos(puntos);
-        actualizarPuntosTotales(puntosAcumulados);
-        const mensaje = mensajeQueHubieraPasado();
-        mostrarMensaje(mensaje);
-      }
-      
-
-
-
+        const puntosSimulados = partida.puntosTotales + puntos;
+        const mensaje = `Si hubieras pedido carta, tu puntuación sería de ${puntosSimulados} puntos`;
+        mostrarMensajeQueHubieraPasado(mensaje); 
+};
 
 
     const desactivarBtnCarta =(estaActivo: boolean) => {

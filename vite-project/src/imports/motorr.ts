@@ -1,4 +1,4 @@
-import { obtenerPuntosTotales} from './modeloo';
+import { EstadoPartida, partida} from './modeloo';
 
 
 
@@ -17,34 +17,31 @@ export const obtenerPuntosCarta = (carta:number): number => {
 };
 
 export const sumarPuntos =(puntosCarta: number):number => {
-    return obtenerPuntosTotales() + puntosCarta;
+    return partida.puntosTotales + puntosCarta;
 };
 
-export const gestionarPartida = (): string | null =>{
-    const puntos =  obtenerPuntosTotales();
-    if (puntos > 7.5) {
-        
-    } return 'Has perdido';
-    if (puntos === 7.5) return 'Has ganado';
-    return null;
-};
+export const obtenerEstadoPartida = (): EstadoPartida  => {
+    if (partida.puntosTotales === 7.5) {
+      return 'Has ganado';
+
+    }else if (partida.puntosTotales > 7.5) {
+     return 'Has perdido';
+}
+return 'Continua jugando';
+}
+
 
 export const obtenerMensajeCuandoMePlanto = (): string => {
-    const puntos = obtenerPuntosTotales();
-    if (puntos < 4) return 'Has sido muy conservador';
-    if (puntos >= 5 ) return 'Te ha entrado el canquelo';
-    if (puntos === 6 || puntos === 7) return 'Casi casi';
-    if (puntos === 7.5) return 'Enorabuena lo has clavado';
+    
+    if (partida.puntosTotales < 4) return 'Has sido muy conservador';
+    if (partida.puntosTotales >= 5 ) return 'Te ha entrado el canquelo';
+    if (partida.puntosTotales === 6 || partida.puntosTotales === 7) return 'Casi casi';
+    if (partida.puntosTotales === 7.5) return 'Enorabuena lo has clavado';
     return 'Has perdido';
 
 };
 
-export const mensajeQueHubieraPasado = () => {
-    const puntos = obtenerPuntosTotales();
-    if (puntos === 7.5 ) return 'Has Ganado, tu puntuación es de ${puntos}';
-    if (puntos > 7.5) return 'Has perdido, tu puntuación es de ${puntos}';
-    return 'Tu puntuación es de ${puntos}';
-}
+
 
 
 
